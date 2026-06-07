@@ -8,53 +8,67 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: "#060C18",
-          900: "#0A1322",
-          800: "#0F1C30",
-          700: "#15273F",
-          600: "#1D344F",
+        // True-dark canvas + surfaces. Fixed hex — these are the structure.
+        ink: "#0A0A0C",
+        surface: {
+          DEFAULT: "#0E0E12",
+          raised: "#141419",
         },
-        slate: {
-          line: "#1E2D42",
-          muted: "#8A99AE",
-          soft: "#B7C2D0",
-        },
-        gold: {
-          DEFAULT: "#C5A572",
-          light: "#D8BE8C",
-          dim: "#9C8458",
-        },
-        ivory: "#F6F4EF",
+        // Text scale.
+        fg: "#FAFAFA",
+        muted: "#9A9AA6",
+        dim: "#5A5A66",
+        // The ONE electric accent. Driven by --accent (RGB channels) in
+        // globals.css, so the whole site re-themes from a single line.
+        // <alpha-value> enables text-accent, border-accent/20, bg-accent/10, etc.
+        accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        serif: ["var(--font-fraunces)", "Georgia", "serif"],
-        sans: ["var(--font-hanken)", "system-ui", "sans-serif"],
+        // Big bold display headlines.
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        // Body copy.
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        // Small uppercase labels / eyebrows / stats — the "tech" signal.
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       letterSpacing: {
-        eyebrow: "0.28em",
+        label: "0.24em",
       },
       maxWidth: {
-        wrap: "1240px",
+        wrap: "1280px",
       },
       keyframes: {
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "0%": { opacity: "0", transform: "translateY(22px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "line-grow": {
-          "0%": { transform: "scaleX(0)" },
-          "100%": { transform: "scaleX(1)" },
+        // Infinite marquee — track is duplicated, so -50% loops seamlessly.
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        // Slow drifting aurora blob in the hero.
+        "aurora-drift": {
+          "0%, 100%": { transform: "translate3d(0, 0, 0) scale(1)" },
+          "33%": { transform: "translate3d(6%, -4%, 0) scale(1.12)" },
+          "66%": { transform: "translate3d(-5%, 5%, 0) scale(0.94)" },
+        },
+        // Live "Active" status dot.
+        "accent-pulse": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.45", transform: "scale(0.82)" },
         },
       },
       animation: {
-        "fade-up": "fade-up 0.9s cubic-bezier(0.16,1,0.3,1) forwards",
-        "fade-in": "fade-in 1.2s ease forwards",
-        "line-grow": "line-grow 1.1s cubic-bezier(0.16,1,0.3,1) forwards",
+        "fade-up": "fade-up 0.85s cubic-bezier(0.16,1,0.3,1) forwards",
+        "fade-in": "fade-in 1.1s ease forwards",
+        marquee: "marquee 32s linear infinite",
+        "aurora-drift": "aurora-drift 22s ease-in-out infinite",
+        "accent-pulse": "accent-pulse 2.4s ease-in-out infinite",
       },
     },
   },

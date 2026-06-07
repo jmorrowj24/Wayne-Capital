@@ -48,39 +48,32 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-28 sm:py-36">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 40% at 80% 0%, rgba(197,165,114,0.10), transparent 70%)",
-        }}
-      />
-      <div className="wrap relative grid gap-14 lg:grid-cols-12">
+    <section id="contact" className="border-b border-white/[0.06] py-24 sm:py-32">
+      <div className="wrap grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Reveal>
-            <div className="flex items-center gap-4">
-              <span className="h-px w-10 bg-gold/60" />
-              <span className="eyebrow">Contact</span>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-accent" />
+              <span className="label text-accent">Contact</span>
             </div>
-            <h2 className="mt-6 font-serif text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-[1.05] tracking-[-0.015em] text-ivory">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.04] tracking-[-0.02em] text-fg">
               Have an opportunity?
             </h2>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-slate-soft">
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
               We welcome conversations with business owners, brokers, operators,
               real estate professionals, and strategic partners.
             </p>
 
-            <div className="mt-10 space-y-4 border-t border-white/[0.08] pt-8">
+            <div className="mt-10 space-y-4 border-t border-white/[0.06] pt-8">
               {[
                 ["Confidential", "Every conversation is held in strict confidence."],
                 ["Direct", "You speak with principals, not intermediaries."],
                 ["No obligation", "An introduction, not a commitment."],
               ].map(([k, v]) => (
                 <div key={k} className="flex gap-4">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                  <p className="text-sm text-slate-soft">
-                    <span className="text-ivory">{k}.</span> {v}
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <p className="text-sm leading-relaxed text-muted">
+                    <span className="text-fg">{k}.</span> {v}
                   </p>
                 </div>
               ))}
@@ -93,7 +86,7 @@ export default function Contact() {
             <div className="card p-8 sm:p-10">
               {status === "success" ? (
                 <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 text-gold">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-accent/50 text-accent">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
                       <path
                         d="M5 12.5l4.5 4.5L19 7"
@@ -104,10 +97,10 @@ export default function Contact() {
                       />
                     </svg>
                   </span>
-                  <h3 className="mt-6 font-serif text-2xl text-ivory">
+                  <h3 className="mt-6 font-display text-2xl font-semibold text-fg">
                     Thank you.
                   </h3>
-                  <p className="mt-3 max-w-sm text-slate-soft">
+                  <p className="mt-3 max-w-sm text-muted">
                     Your opportunity has been received. We review every submission
                     personally and will be in touch if there&apos;s a fit.
                   </p>
@@ -150,7 +143,7 @@ export default function Contact() {
                           Select a type
                         </option>
                         {opportunityTypes.map((t) => (
-                          <option key={t} value={t} className="bg-navy-900">
+                          <option key={t} value={t} className="bg-surface-raised">
                             {t}
                           </option>
                         ))}
@@ -169,7 +162,7 @@ export default function Contact() {
                   </div>
 
                   {status === "error" && (
-                    <p className="text-sm text-gold-light">
+                    <p className="text-sm text-accent">
                       Please complete name, email, and a brief message.
                     </p>
                   )}
@@ -181,7 +174,7 @@ export default function Contact() {
                   >
                     {status === "submitting" ? "Submitting…" : "Submit Opportunity"}
                   </button>
-                  <p className="text-center text-xs leading-relaxed text-slate-muted">
+                  <p className="text-center text-xs leading-relaxed text-dim">
                     Wayne Capital is a private investment company. This form is for
                     opportunity sourcing only and is not an offer or solicitation
                     of any kind.
@@ -201,14 +194,14 @@ export default function Contact() {
           border: 1px solid rgba(255,255,255,0.10);
           background: rgba(255,255,255,0.02);
           padding: 0.85rem 1rem;
-          color: #F6F4EF;
+          color: #FAFAFA;
           font-size: 0.95rem;
           outline: none;
           transition: border-color .3s, background .3s;
         }
-        .input::placeholder { color: #5e6c7e; }
+        .input::placeholder { color: #5A5A66; }
         .input:focus {
-          border-color: rgba(197,165,114,0.55);
+          border-color: rgb(var(--accent) / 0.55);
           background: rgba(255,255,255,0.035);
         }
       `}</style>
@@ -224,9 +217,9 @@ function Label({
   required?: boolean;
 }) {
   return (
-    <label className="text-xs uppercase tracking-eyebrow text-slate-muted">
+    <label className="font-mono text-[11px] uppercase tracking-label text-muted">
       {children}
-      {required && <span className="text-gold"> *</span>}
+      {required && <span className="text-accent"> *</span>}
     </label>
   );
 }

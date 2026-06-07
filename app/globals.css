@@ -4,35 +4,49 @@
 
 :root {
   color-scheme: dark;
+
+  /* ────────────────────────────────────────────────────────────────
+     THE ACCENT. Change this one line to re-theme the entire site.
+     Value is RGB channels (no commas) so Tailwind can apply opacity:
+     text-accent, border-accent/20, bg-accent/10, etc.
+     ──────────────────────────────────────────────────────────────── */
+  --accent: 198 242 78;        /* electric lime (default) */
+  /* --accent: 245 200 75; */  /* gold          */
+  /* --accent: 78 178 255; */  /* electric blue */
 }
 
 html {
   scroll-behavior: smooth;
+  /* Offset anchor jumps so sections don't land under the fixed h-20 nav. */
+  scroll-padding-top: 6rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  background-color: theme("colors.navy.950");
-  color: theme("colors.ivory");
+  background-color: theme("colors.ink");
+  color: theme("colors.fg");
 }
 
-/* Subtle selection */
+/* Selection uses the accent, dimmed. */
 ::selection {
-  background: theme("colors.gold.dim");
-  color: theme("colors.navy.950");
+  background: rgb(var(--accent) / 0.85);
+  color: theme("colors.ink");
 }
 
-/* Thin, refined scrollbar */
+/* Thin, refined scrollbar. */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: theme("colors.navy.950");
+  background: theme("colors.ink");
 }
 ::-webkit-scrollbar-thumb {
-  background: theme("colors.navy.700");
+  background: #26262e;
   border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34343e;
 }
 
 @layer components {
@@ -40,57 +54,82 @@ body {
     @apply mx-auto w-full max-w-wrap px-6 sm:px-8 lg:px-12;
   }
 
-  .eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-eyebrow text-gold;
+  /* Small uppercase mono label — the "tech" signal. */
+  .label {
+    @apply font-mono text-[11px] font-medium uppercase tracking-label text-muted;
   }
 
-  /* Hairline gradient divider */
+  /* Hairline gradient divider. */
   .hairline {
     height: 1px;
     background: linear-gradient(
       to right,
       transparent,
-      theme("colors.slate.line") 18%,
-      theme("colors.slate.line") 82%,
+      rgb(255 255 255 / 0.1) 18%,
+      rgb(255 255 255 / 0.1) 82%,
       transparent
     );
   }
 
+  /* Surface card with a subtle accent sheen that sweeps across on hover. */
   .card {
     @apply relative overflow-hidden rounded-2xl border border-white/[0.06]
-           bg-gradient-to-b from-white/[0.04] to-white/[0.01]
-           transition-all duration-500;
+           bg-surface transition-all duration-500 ease-out;
   }
   .card:hover {
-    @apply border-gold/25;
+    @apply -translate-y-1 border-white/[0.12];
+    box-shadow: 0 24px 60px -28px rgb(0 0 0 / 0.8);
+  }
+  /* Accent sheen — a faint diagonal gleam that slides in from the left edge. */
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 30%,
+      rgb(var(--accent) / 0.06) 50%,
+      transparent 70%
+    );
+    transform: translateX(-20%);
+    transition: opacity 0.6s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card:hover::after {
+    opacity: 1;
+    transform: translateX(20%);
   }
 
+  /* Accent solid button. Used sparingly — primary CTA only. */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full
-           bg-gold px-7 py-3.5 text-sm font-medium tracking-wide text-navy-950
-           transition-all duration-300 hover:bg-gold-light;
+           bg-accent px-7 py-3 text-sm font-medium tracking-wide text-ink
+           transition-all duration-300 hover:brightness-110
+           hover:shadow-[0_0_30px_-6px_rgb(var(--accent)/0.55)];
   }
 
+  /* Ghost / outline button. */
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full
-           border border-white/[0.15] px-7 py-3.5 text-sm font-medium
-           tracking-wide text-ivory transition-all duration-300
-           hover:border-gold/50 hover:text-gold-light;
+           border border-white/15 px-7 py-3 text-sm font-medium tracking-wide
+           text-fg transition-all duration-300
+           hover:border-accent/50 hover:text-accent;
   }
 }
 
-/* Faint film-grain / paper texture for depth */
+/* Faint film-grain texture for depth (kept very subtle on true-dark). */
 .grain::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: 0.022;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Scroll reveal */
+/* Scroll reveal — driven by Reveal.tsx adding .is-visible. */
 .reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -103,6 +142,47 @@ body {
   transform: translateY(0);
 }
 
+/* Masked grid backdrop (hero). Faded toward the edges with a radial mask. */
+.grid-mask {
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255 / 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 35%,
+    #000 0%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 35%,
+    #000 0%,
+    transparent 78%
+  );
+}
+
+/* Edge-fade mask for the marquee band so words dissolve at both ends. */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+/* ───────────────────────── Reduced motion ─────────────────────────
+   Disable every non-essential animation/transition for users who ask.  */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -111,5 +191,12 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

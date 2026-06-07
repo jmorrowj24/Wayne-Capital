@@ -30,28 +30,28 @@ const pillars = [
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="relative py-28 sm:py-36">
+    <section id="what-we-do" className="border-b border-white/[0.06] py-24 sm:py-32">
       <div className="wrap">
         <SectionHeading
           eyebrow="What We Do"
           title="Four disciplines. One long-term owner."
-          intro="We allocate capital across operating businesses, real assets, public equities, and new ventures — holding what we build for the long term."
+          intro="We put capital into operating businesses, real assets, public equities, and new ventures — and we hold what we build."
         />
 
-        <div className="mt-16 grid gap-5 sm:grid-cols-2">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 90}>
               <article className="card group h-full p-8 sm:p-10">
                 <div className="flex items-start justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-gold transition-colors duration-500 group-hover:border-gold/40">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-accent transition-colors duration-500 group-hover:border-accent/40">
                     <p.icon />
                   </span>
-                  <span className="font-serif text-sm text-slate-muted">{p.n}</span>
+                  <span className="font-mono text-xs text-dim">{p.n}</span>
                 </div>
-                <h3 className="mt-8 font-serif text-2xl font-light text-ivory">
+                <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight text-fg">
                   {p.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-slate-soft">{p.body}</p>
+                <p className="mt-4 leading-relaxed text-muted">{p.body}</p>
               </article>
             </Reveal>
           ))}
