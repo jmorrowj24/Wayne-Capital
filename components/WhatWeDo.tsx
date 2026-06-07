@@ -11,7 +11,7 @@ const pillars = [
   {
     n: "02",
     title: "Real Estate",
-    body: "We invest in residential, multifamily, commercial, and value-add real estate opportunities in growing markets.",
+    body: "We invest in residential, multifamily, commercial, and value-add real estate in growing markets.",
     icon: IconRealEstate,
   },
   {
@@ -22,20 +22,19 @@ const pillars = [
   },
   {
     n: "04",
-    title: "Venture Building",
-    body: "We launch and scale businesses where we see meaningful inefficiency and opportunity.",
+    title: "New Ventures",
+    body: "We build and back operating companies where we see meaningful inefficiency and opportunity.",
     icon: IconVentures,
   },
 ];
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="border-b border-white/[0.06] py-24 sm:py-32">
+    <section id="what-we-do" className="border-t border-white/10 py-24 sm:py-32">
       <div className="wrap">
         <SectionHeading
           eyebrow="What We Do"
           title="Four disciplines. One long-term owner."
-          intro="We put capital into operating businesses, real assets, public equities, and new ventures — and we hold what we build."
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2">
@@ -46,9 +45,9 @@ export default function WhatWeDo() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-accent transition-colors duration-500 group-hover:border-accent/40">
                     <p.icon />
                   </span>
-                  <span className="font-mono text-xs text-dim">{p.n}</span>
+                  <span className="font-serif text-sm text-dim">{p.n}</span>
                 </div>
-                <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight text-fg">
+                <h3 className="mt-8 font-serif text-2xl font-light text-fg">
                   {p.title}
                 </h3>
                 <p className="mt-4 leading-relaxed text-muted">{p.body}</p>

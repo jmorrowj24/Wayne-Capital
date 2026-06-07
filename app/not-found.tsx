@@ -17,10 +17,8 @@ export default function NotFound() {
           <Logo size={48} />
         </div>
 
-        <p className="mt-8 font-mono text-xs uppercase tracking-label text-accent">
-          Error 404
-        </p>
-        <h1 className="mt-4 font-display text-5xl font-extrabold tracking-tight text-fg sm:text-6xl">
+        <p className="mt-8 label text-accent">Error 404</p>
+        <h1 className="mt-4 font-serif text-5xl font-light tracking-tight text-fg sm:text-6xl">
           Off the map.
         </h1>
         <p className="mt-5 leading-relaxed text-muted">

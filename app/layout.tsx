@@ -1,26 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
-// Big bold display headlines.
-const display = Bricolage_Grotesque({
+// Elegant high-end serif — display / headlines.
+const serif = Fraunces({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-display",
+  variable: "--font-serif",
 });
 
-// Body copy.
+// Clean neutral body.
 const sans = Hanken_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
-});
-
-// Small uppercase labels / eyebrows / stats — the "tech" signal.
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -31,14 +24,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wayne Capital — Buy. Build. Own.",
     description:
-      "A private investment company that buys, builds, and owns for the long term. No funds. No flipping. No expiration date.",
+      "A private investment company that acquires businesses, invests in real estate, takes positions in public companies, and builds new ventures — and holds them for the long term.",
     type: "website",
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0C",
+  themeColor: "#0B0B0D",
 };
 
 export default function RootLayout({
@@ -47,11 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable}`}
-    >
-      <body className="grain font-sans antialiased">{children}</body>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

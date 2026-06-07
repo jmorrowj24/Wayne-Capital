@@ -15,12 +15,12 @@ export default function SectionHeading({
 }: Props) {
   const centered = align === "center";
   return (
-    <Reveal className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+    <Reveal className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <div className={`flex items-center gap-3 ${centered ? "justify-center" : ""}`}>
         <span className="h-px w-8 bg-accent" />
         <span className="label text-accent">{eyebrow}</span>
       </div>
-      <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.04] tracking-[-0.02em] text-fg">
+      <h2 className="mt-6 font-serif text-[clamp(2.1rem,4.6vw,3.4rem)] font-light leading-[1.08] tracking-[-0.01em] text-fg">
         {title}
       </h2>
       {intro && (
