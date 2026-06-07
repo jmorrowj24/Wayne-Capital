@@ -17,6 +17,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Offset anchor jumps so sections don't land under the fixed h-20 nav. */
+  scroll-padding-top: 6rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

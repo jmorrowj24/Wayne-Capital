@@ -13,12 +13,36 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: light up the nav link for whichever section is in view.
+  useEffect(() => {
+    const ids = links.map((l) => l.href.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        });
+      },
+      // Trigger around the upper-middle band so the active link tracks
+      // the section the reader is actually looking at.
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -49,7 +73,10 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="font-mono text-xs uppercase tracking-label text-muted transition-colors duration-300 hover:text-fg"
+              aria-current={active === l.href ? "true" : undefined}
+              className={`font-mono text-xs uppercase tracking-label transition-colors duration-300 hover:text-fg ${
+                active === l.href ? "text-accent" : "text-muted"
+              }`}
             >
               {l.label}
             </a>
