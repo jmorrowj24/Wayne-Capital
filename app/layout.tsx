@@ -24,7 +24,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://waynecapital.com"),
+  metadataBase: new URL("https://capitalwayne.com"),
   title: "Wayne Capital — Buy. Build. Own.",
   description:
     "Wayne Capital is a private investment company that acquires businesses, invests in real estate, takes positions in public companies, and builds new ventures — and holds them for the long term.",
