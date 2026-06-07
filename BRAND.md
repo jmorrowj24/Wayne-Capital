@@ -4,6 +4,10 @@ A private investment company. We buy, build, and own — for the long term.
 This document is the source of truth for voice, logo, color, and type. The
 homepage is built directly on these tokens.
 
+The look: **premium and restrained** — Berkshire/Blackstone gravitas, but
+darker, sleeker, and more modern. Near-black canvas, one warm-gold accent,
+elegant serif headlines, generous whitespace. Credibility over scale.
+
 ---
 
 ## Voice
@@ -12,123 +16,123 @@ homepage is built directly on these tokens.
 brochure.
 
 - **Short, declarative sentences.** Make the point, then stop.
-- **Plain words.** No jargon, no buzzwords, no "synergies" or "leverage our
-  platform." If a banker would say it, we don't.
-- **A clear point of view.** We are not a fund. We hold our own capital, back
-  operators, and never race a clock. Say so plainly.
-- **Premium, not loud.** Restraint signals confidence. We don't oversell.
+- **Plain words.** No jargon, no buzzwords. If a banker would say it, we don't.
+- **A clear point of view.** We invest our own capital, back operators, and never
+  race a clock. Say so plainly.
+- **Premium, not loud.** Restraint signals confidence. Never oversell — and never
+  inflate size, metrics, or portfolio. The site exists to source deals and earn
+  trust, not to look big.
 
-**On-brand:** "We buy to own — not to flip." · "Operators lead; we back them." ·
-"No funds. No flipping. No expiration date."
+**On-brand:** "We are owners, not a fund." · "We invest our own capital." ·
+"Patience is our advantage."
 
-**Off-brand:** "Leveraging our world-class platform to unlock synergistic
-value." · Hype, hedging, or filler.
+**Off-brand:** "Leveraging our world-class platform to unlock synergies." · Hype,
+hedging, filler, or invented numbers.
 
-The three-word anthem — **Buy. Build. Own.** — is the spine of the brand. Use it
-in the hero, the footer, and sparingly elsewhere.
+The anthem — **Buy. Build. Own.** — is the spine of the brand. Use it in the hero
+and the footer; the gold falls on "Own."
 
 ---
 
 ## Logo
 
-The mark is a **circular monogram** — a clean white "W" on the dark UI
-(`components/Logo.tsx`). It's drawn in SVG, so it stays crisp at any size and
-needs no asset.
+A **circular monogram** — a clean knockout/white "W" on the near-black UI
+(`components/Logo.tsx`), drawn in SVG so it stays crisp at any size.
 
 ### Usage
-- **Always white on dark.** The site canvas is near-black; the mark and wordmark
-  read in white (`#FAFAFA`). The accent ring appears only on hover.
-- **Wordmark:** "WAYNE CAPITAL" set in JetBrains Mono, uppercase, wide tracking
-  (`0.18em`). The mono wordmark next to the geometric mark is the "tech" signal.
-- Give the mark clear space; don't crowd it. Don't recolor the mark with the
-  accent (the accent is for highlights, not fills).
+- **Knockout/white on dark.** The mark and wordmark read in warm off-white
+  (`#F5F3EE`); the gold ring appears only on hover.
+- **Wordmark:** "WAYNE CAPITAL" in Hanken Grotesk, uppercase, wide tracking
+  (`0.2em`). Calm and institutional next to the geometric mark.
+- Give the mark clear space. Don't fill the mark with gold (gold is for accents).
 
 ### Swapping in the real logo
-Your real logo is **black**, so on this dark site you need the **white version**.
-
-1. Export a white-on-transparent `SVG` (or PNG) of your mark into `/public`,
-   e.g. `/public/wayne-mark-white.svg`.
-2. In `components/Logo.tsx`, replace the inline `<svg>…</svg>` with a `next/image`
+Your real logo is **black**, so on this dark site you need a **white / knockout**
+version.
+1. Export a white-on-transparent SVG/PNG into `/public`, e.g.
+   `/public/wayne-mark-white.svg`.
+2. In `components/Logo.tsx`, replace the inline `<svg>` with a `next/image`
    `<Image src="/wayne-mark-white.svg" … fill className="object-contain p-1.5" />`
-   (instructions are in the file's header comment). Keep the wrapping `<span>`.
-3. No white export? Add the Tailwind class `invert` to flip a black logo to
-   white — though a true white export looks cleaner.
+   (full instructions are in the file header). Keep the wrapping `<span>`.
+3. Only have the black file? Add Tailwind `invert` to knock it out to white.
 
 ---
 
 ## Color
 
-True-dark canvas, one electric accent. The accent is used **sparingly** — one
-word, a thin rule, a status dot, an active/hover state. **Never large fills.**
+Near-black canvas, one restrained gold. Gold is used **sparingly** — a thin rule,
+one word, a small dot, button fills, hover states. Subtle gradients are allowed
+for depth; **never** flashy fills.
 
-| Token            | Value       | Role                                  |
-| ---------------- | ----------- | ------------------------------------- |
-| `ink`            | `#0A0A0C`   | Page canvas (true dark)               |
-| `surface`        | `#0E0E12`   | Cards, raised bands                   |
-| `surface-raised` | `#141419`   | Hover / nested surfaces               |
-| `fg`             | `#FAFAFA`   | Primary text                          |
-| `muted`          | `#9A9AA6`   | Body / secondary text                 |
-| `dim`            | `#5A5A66`   | Labels, captions, disclaimers         |
-| `accent`         | see below   | Highlights only — one word, rules, dots |
+| Token            | Value       | Role                                   |
+| ---------------- | ----------- | -------------------------------------- |
+| `base`           | `#0B0B0D`   | Page canvas (near-black)               |
+| `surface`        | `#141416`   | Cards / elevated bands                 |
+| `surface-raised` | `#1A1A1D`   | Card gradient bottom / nested surfaces |
+| `fg`             | `#F5F3EE`   | Primary text (warm off-white)          |
+| `muted`          | `#9A988F`   | Body / secondary text                  |
+| `dim`            | `#5E5C55`   | Labels, captions, disclaimers          |
+| hairline         | `rgba(255,255,255,0.10)` | Borders / dividers         |
+| `accent`         | see below   | Gold — accents only                    |
 
-### The accent — re-theme the whole site from one line
+### The accent — re-theme from one line
 The accent is a CSS variable in `app/globals.css`, written as **RGB channels**
-(no commas) so Tailwind can apply opacity (`text-accent`, `border-accent/20`,
+(no commas) so Tailwind can apply opacity (`text-accent`, `border-accent/30`,
 `bg-accent/10`):
 
 ```css
 :root {
-  --accent: 198 242 78;        /* electric lime (default) */
-  /* --accent: 245 200 75; */  /* gold          */
-  /* --accent: 78 178 255; */  /* electric blue */
+  --accent: 201 166 107;        /* restrained warm gold #C9A66B (default) */
+  /* --accent: 226 192 120; */  /* brighter gold      #E2C078            */
 }
 ```
 
-Change that one line and the entire site re-themes — buttons, dots, rules, the
-hero glow, the accent word in headlines. Tailwind exposes it as
+Change that one line and the whole site re-themes — buttons, rules, the gold
+"Own.", hover states, the hero glow. Tailwind exposes it as
 `accent: rgb(var(--accent) / <alpha-value>)` in `tailwind.config.ts`.
 
 ---
 
 ## Type
 
-Three families, each with a job. Big bold display + small wide-tracked mono
-labels is the core of the modern look.
+Two families, calm and premium. Big calm serif headlines + generous spacing is
+the whole look.
 
-| Family                  | Tailwind        | CSS var          | Role                                            |
-| ----------------------- | --------------- | ---------------- | ----------------------------------------------- |
-| **Bricolage Grotesque** | `font-display`  | `--font-display` | Big, bold display headlines (H1/H2, stats)      |
-| **Hanken Grotesk**      | `font-sans`     | `--font-sans`    | Body copy (the default on `<body>`)             |
-| **JetBrains Mono**      | `font-mono`     | `--font-mono`    | Small uppercase labels / eyebrows / stats / nav |
+| Family             | Tailwind     | CSS var        | Role                                     |
+| ------------------ | ------------ | -------------- | ---------------------------------------- |
+| **Fraunces**       | `font-serif` | `--font-serif` | Display / headlines (editorial, high-end) |
+| **Hanken Grotesk** | `font-sans`  | `--font-sans`  | Body copy (default on `<body>`)          |
 
-Loaded via `next/font/google` in `app/layout.tsx` (zero layout shift, self-hosted).
+Loaded via `next/font/google` in `app/layout.tsx` (zero layout shift).
 
 ### Conventions
-- **Headlines:** `font-display`, bold/extrabold, tight tracking (`-0.02em` to
-  `-0.03em`), tight leading. Let them be large.
+- **Headlines:** `font-serif`, light weight, slightly tight tracking, generous
+  size. Let them breathe. The gold falls on a single word.
 - **Body:** `font-sans`, relaxed leading, `muted` color.
-- **Labels / eyebrows:** the `.label` utility — `font-mono`, `11px`, uppercase,
-  `tracking-label` (`0.24em`), `muted`. The eyebrow's leading rule and label can
-  take the accent.
-- Pair one big display headline with a small mono eyebrow above it. That contrast
-  is the signature.
+- **Labels / eyebrows:** the `.label` utility — Hanken uppercase, `11px`,
+  wide `tracking-label` (`0.22em`), `muted`. This wide-tracked sans is the
+  refined "tech-but-quiet" signal; the eyebrow rule + label can take the gold.
+- Pair one calm serif headline with a small wide-tracked label above it.
 
 ---
 
 ## Motion
 
-Heavy but cheap — Tailwind + CSS keyframes + minimal React only, **no animation
-libraries**. Everything respects `prefers-reduced-motion` (a global reduce block
-in `globals.css` plus per-component guards).
+Moderate and tasteful — Tailwind + CSS only, no animation libraries. Everything
+respects `prefers-reduced-motion` (a global reduce block in `globals.css`).
 
-- **Hero:** cursor-following accent glow, slow drifting aurora blob, faint masked
-  grid (`components/HeroAtmosphere.tsx`).
-- **Load:** staggered word-by-word reveal of the H1; eyebrow → headline → subhead
-  → CTAs cascade.
-- **Marquee:** infinite looping band of brand phrases.
-- **Stats:** count-up on scroll (IntersectionObserver + rAF).
-- **Sections:** scroll-reveal via `components/Reveal.tsx` (`.reveal` → `.is-visible`).
-- **Cards:** lift + accent sheen sweep on hover (`.card` in `globals.css`).
-- **Status dots:** pulsing accent for "Active" ventures.
+- **Hero:** gentle staggered `fade-up` on load + a soft dark radial glow for depth.
+- **Sections:** `.reveal` fade-up as they enter view (`components/Reveal.tsx`).
+- **Cards/buttons:** smooth hover; a faint gold sheen sweeps across cards on hover
+  (`.card::after` in `globals.css`).
 
-Keep motion confident and unhurried. Ease-out curves, no bounce.
+Explicitly **not** used: marquee, cursor-follow glow, count-up stats, aurora.
+Calm and confident, not flashy.
+
+---
+
+## Page structure
+
+One page, five sections, no filler: **Hero → Who We Are → What We Do → What We
+Look For → Connect**, plus nav and footer. The contact form posts to
+`/api/contact` (validates + logs). Production domain: **capitalwayne.com**.

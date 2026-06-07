@@ -8,55 +8,54 @@
   /* ────────────────────────────────────────────────────────────────
      THE ACCENT. Change this one line to re-theme the entire site.
      Value is RGB channels (no commas) so Tailwind can apply opacity:
-     text-accent, border-accent/20, bg-accent/10, etc.
+     text-accent, border-accent/30, bg-accent/10, etc.
      ──────────────────────────────────────────────────────────────── */
-  --accent: 198 242 78;        /* electric lime (default) */
-  /* --accent: 245 200 75; */  /* gold          */
-  /* --accent: 78 178 255; */  /* electric blue */
+  --accent: 201 166 107;        /* restrained warm gold #C9A66B (default) */
+  /* --accent: 226 192 120; */  /* brighter gold      #E2C078            */
 }
 
 html {
   scroll-behavior: smooth;
-  /* Offset anchor jumps so sections don't land under the fixed h-20 nav. */
+  /* Offset anchor jumps so sections don't land under the fixed nav. */
   scroll-padding-top: 6rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  background-color: theme("colors.ink");
+  background-color: theme("colors.base");
   color: theme("colors.fg");
 }
 
-/* Selection uses the accent, dimmed. */
+/* Refined selection — gold, dimmed. */
 ::selection {
   background: rgb(var(--accent) / 0.85);
-  color: theme("colors.ink");
+  color: theme("colors.base");
 }
 
-/* Thin, refined scrollbar. */
+/* Thin scrollbar. */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: theme("colors.ink");
+  background: theme("colors.base");
 }
 ::-webkit-scrollbar-thumb {
-  background: #26262e;
+  background: #2a2a2d;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #34343e;
+  background: #38383c;
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-wrap px-6 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-wrap px-6 sm:px-8 lg:px-10;
   }
 
-  /* Small uppercase mono label — the "tech" signal. */
+  /* Small uppercase wide-tracked label — the refined "eyebrow". */
   .label {
-    @apply font-mono text-[11px] font-medium uppercase tracking-label text-muted;
+    @apply font-sans text-[11px] font-medium uppercase tracking-label text-muted;
   }
 
   /* Hairline gradient divider. */
@@ -71,16 +70,17 @@ body {
     );
   }
 
-  /* Surface card with a subtle accent sheen that sweeps across on hover. */
+  /* Elevated card with a faint gold sheen that sweeps across on hover. */
   .card {
-    @apply relative overflow-hidden rounded-2xl border border-white/[0.06]
-           bg-surface transition-all duration-500 ease-out;
+    @apply relative overflow-hidden rounded-xl border border-white/10
+           bg-gradient-to-b from-surface to-surface-raised
+           transition-all duration-500 ease-out;
   }
   .card:hover {
-    @apply -translate-y-1 border-white/[0.12];
-    box-shadow: 0 24px 60px -28px rgb(0 0 0 / 0.8);
+    @apply -translate-y-1 border-accent/30;
+    box-shadow: 0 26px 60px -30px rgb(0 0 0 / 0.85);
   }
-  /* Accent sheen — a faint diagonal gleam that slides in from the left edge. */
+  /* Gold sheen — a faint diagonal gleam sliding in from the left. */
   .card::after {
     content: "";
     position: absolute;
@@ -90,26 +90,26 @@ body {
     background: linear-gradient(
       115deg,
       transparent 30%,
-      rgb(var(--accent) / 0.06) 50%,
+      rgb(var(--accent) / 0.07) 50%,
       transparent 70%
     );
-    transform: translateX(-20%);
-    transition: opacity 0.6s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(-25%);
+    transition: opacity 0.6s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .card:hover::after {
     opacity: 1;
-    transform: translateX(20%);
+    transform: translateX(25%);
   }
 
-  /* Accent solid button. Used sparingly — primary CTA only. */
+  /* Gold solid button — primary CTA only. */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full
-           bg-accent px-7 py-3 text-sm font-medium tracking-wide text-ink
-           transition-all duration-300 hover:brightness-110
-           hover:shadow-[0_0_30px_-6px_rgb(var(--accent)/0.55)];
+           bg-accent px-7 py-3 text-sm font-medium tracking-wide text-[#0B0B0D]
+           transition-all duration-300 hover:brightness-[1.08]
+           hover:shadow-[0_0_34px_-8px_rgb(var(--accent)/0.6)];
   }
 
-  /* Ghost / outline button. */
+  /* Quiet ghost / outline button. */
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full
            border border-white/15 px-7 py-3 text-sm font-medium tracking-wide
@@ -118,67 +118,17 @@ body {
   }
 }
 
-/* Faint film-grain texture for depth (kept very subtle on true-dark). */
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.022;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 /* Scroll reveal — driven by Reveal.tsx adding .is-visible. */
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(22px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Masked grid backdrop (hero). Faded toward the edges with a radial mask. */
-.grid-mask {
-  background-image: linear-gradient(
-      to right,
-      rgb(255 255 255 / 0.04) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 35%,
-    #000 0%,
-    transparent 78%
-  );
-  mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 35%,
-    #000 0%,
-    transparent 78%
-  );
-}
-
-/* Edge-fade mask for the marquee band so words dissolve at both ends. */
-.marquee-mask {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 12%,
-    #000 88%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 12%,
-    #000 88%,
-    transparent
-  );
 }
 
 /* ───────────────────────── Reduced motion ─────────────────────────

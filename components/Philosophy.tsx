@@ -1,50 +1,37 @@
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
-const principles = [
-  "We buy to own — not to flip",
-  "Operators lead; we back them",
-  "No outside investors, no clock",
-  "Capital that compounds quietly",
-];
-
 export default function Philosophy() {
   return (
-    <section id="thesis" className="border-b border-white/[0.06] py-24 sm:py-32">
+    <section id="approach" className="border-t border-white/10 py-24 sm:py-32">
       <div className="wrap">
-        <SectionHeading eyebrow="Thesis" title="We are not a fund. We are owners." />
+        <SectionHeading eyebrow="Who We Are" title="We are owners, not a fund." />
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="space-y-6 text-lg leading-relaxed text-muted">
+        <div className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-muted">
+          <Reveal>
             <p>
-              A fund raises other people&apos;s money, charges fees, and races a
-              clock to give it back. We are the opposite. Wayne Capital holds its
-              own capital and answers to no one else. There is no fund to close,
-              no investors to placate, and no date by which we are forced to sell.
-            </p>
-            <p>
-              We buy good businesses and back the operators who run them. We own
-              real estate and reinvest the cash it produces. We take concentrated
-              positions in companies we understand and let them work. Nothing here
-              is built to be flipped. It is built to be owned — and to compound,
-              quietly, over decades.
+              We invest our own capital. There are no outside investors, no fund
+              to raise, and no clock forcing a sale. That freedom is the whole
+              point: it lets us back good operators, hold what we buy, and let it
+              compound for the long term.
             </p>
           </Reveal>
-
-          <Reveal className="space-y-px" delay={120}>
-            {principles.map((p, i) => (
-              <div
-                key={p}
-                className="group flex items-baseline gap-5 border-t border-white/[0.06] py-5 transition-colors duration-300 hover:border-accent/30"
-              >
-                <span className="font-mono text-sm text-accent">0{i + 1}</span>
-                <span className="font-display text-xl font-semibold tracking-tight text-fg sm:text-2xl">
-                  {p}
-                </span>
-              </div>
-            ))}
+          <Reveal delay={100}>
+            <p>
+              We are not chasing a quick exit. We buy businesses worth owning,
+              support the people who run them, reinvest the cash they generate,
+              and stay. Patience is our advantage — and we intend to keep it.
+            </p>
           </Reveal>
         </div>
+
+        {/* One subtle line about ventures — not a showcase. */}
+        <Reveal delay={160}>
+          <p className="mt-10 border-t border-white/10 pt-6 text-base text-dim">
+            We&apos;re also building a small number of operating companies of our
+            own.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

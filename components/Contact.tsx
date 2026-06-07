@@ -48,23 +48,23 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="border-b border-white/[0.06] py-24 sm:py-32">
+    <section id="contact" className="border-t border-white/10 py-24 sm:py-32">
       <div className="wrap grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-accent" />
-              <span className="label text-accent">Contact</span>
+              <span className="label text-accent">Connect</span>
             </div>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.04] tracking-[-0.02em] text-fg">
+            <h2 className="mt-6 font-serif text-[clamp(2.1rem,4.6vw,3.4rem)] font-light leading-[1.08] tracking-[-0.01em] text-fg">
               Have an opportunity?
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
               We welcome conversations with business owners, brokers, operators,
-              real estate professionals, and strategic partners.
+              and partners.
             </p>
 
-            <div className="mt-10 space-y-4 border-t border-white/[0.06] pt-8">
+            <div className="mt-10 space-y-4 border-t border-white/10 pt-8">
               {[
                 ["Confidential", "Every conversation is held in strict confidence."],
                 ["Direct", "You speak with principals, not intermediaries."],
@@ -97,7 +97,7 @@ export default function Contact() {
                       />
                     </svg>
                   </span>
-                  <h3 className="mt-6 font-display text-2xl font-semibold text-fg">
+                  <h3 className="mt-6 font-serif text-3xl font-light text-fg">
                     Thank you.
                   </h3>
                   <p className="mt-3 max-w-sm text-muted">
@@ -194,12 +194,12 @@ export default function Contact() {
           border: 1px solid rgba(255,255,255,0.10);
           background: rgba(255,255,255,0.02);
           padding: 0.85rem 1rem;
-          color: #FAFAFA;
+          color: #F5F3EE;
           font-size: 0.95rem;
           outline: none;
           transition: border-color .3s, background .3s;
         }
-        .input::placeholder { color: #5A5A66; }
+        .input::placeholder { color: #5E5C55; }
         .input:focus {
           border-color: rgb(var(--accent) / 0.55);
           background: rgba(255,255,255,0.035);
@@ -217,7 +217,7 @@ function Label({
   required?: boolean;
 }) {
   return (
-    <label className="font-mono text-[11px] uppercase tracking-label text-muted">
+    <label className="label">
       {children}
       {required && <span className="text-accent"> *</span>}
     </label>
