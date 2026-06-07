@@ -11,7 +11,7 @@ const pillars = [
   {
     n: "02",
     title: "Real Estate",
-    body: "We invest in residential, multifamily, commercial, and value-add real estate in growing markets.",
+    body: "We acquire and operate residential, multifamily, and commercial real estate, focusing on durable cash flow and long-term value in select Midwest markets.",
     icon: IconRealEstate,
   },
   {
