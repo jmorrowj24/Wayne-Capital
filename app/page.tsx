@@ -2,20 +2,20 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Philosophy from "@/components/Philosophy";
 import WhatWeDo from "@/components/WhatWeDo";
-import Criteria from "@/components/Criteria";
-import Contact from "@/components/Contact";
+import Band from "@/components/Band";
+import Join from "@/components/Join";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main className="relative z-10">
+      <main>
         <Hero />
         <Philosophy />
         <WhatWeDo />
-        <Criteria />
-        <Contact />
+        <Band />
+        <Join />
       </main>
       <Footer />
     </>

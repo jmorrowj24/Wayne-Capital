@@ -8,66 +8,44 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Near-black canvas + elevated surfaces. Fixed hex — the structure.
-        base: "#0B0B0D",
-        surface: {
-          DEFAULT: "#141416",
-          raised: "#1A1A1D",
-        },
-        // Text scale (warm off-white through to dim).
-        fg: "#F5F3EE",
-        muted: "#9A988F",
-        dim: "#5E5C55",
-        // The ONE accent — restrained warm gold. Driven by --accent (RGB
-        // channels) in globals.css, so the whole site re-themes from one line.
-        // <alpha-value> enables text-accent, border-accent/30, bg-accent/10, etc.
+        // Light, warm-neutral palette (Tesla / Jane-Street calm).
+        paper: "#FFFFFF",
+        cream: "#F6F5F2", // warm off-white
+        ink: "#17181C", // near-black, warm
+        muted: "#6B6E76",
+        faint: "#9A9CA3",
+        dark: "#121316", // the one dark section
+        // The single accent. Monochrome ink by default — swap --accent in
+        // globals.css for a quiet tone and the whole site re-themes.
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        // Elegant high-end serif — display / headlines (the "Main Street" voice).
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        // Clean neutral body.
+        // Wordmark logo only.
+        jost: ["var(--font-jost)", "system-ui", "sans-serif"],
+        // Body / UI.
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        // Monospace — the cold "Wall Street" / label voice.
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        // Serif accents (italic display).
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       letterSpacing: {
-        label: "0.22em",
+        label: "0.24em",
       },
       maxWidth: {
         wrap: "1200px",
       },
       keyframes: {
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(18px)" },
+          "0%": { opacity: "0", transform: "translateY(26px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        // Slow cinematic image zoom on the warm side.
-        "zoom-slow": {
-          "0%": { transform: "scale(1.02)" },
-          "100%": { transform: "scale(1.1)" },
-        },
-        // Hairline divider drawing in from one end.
-        "draw-y": {
-          "0%": { transform: "scaleY(0)" },
-          "100%": { transform: "scaleY(1)" },
-        },
-        "draw-x": {
-          "0%": { transform: "scaleX(0)" },
-          "100%": { transform: "scaleX(1)" },
-        },
       },
       animation: {
-        // Calm, premium easing — no bounce.
-        "fade-up": "fade-up 0.9s cubic-bezier(0.22,1,0.36,1) forwards",
-        "fade-in": "fade-in 1.2s ease forwards",
-        "zoom-slow": "zoom-slow 22s ease-out forwards",
-        "draw-y": "draw-y 1.1s cubic-bezier(0.22,1,0.36,1) forwards",
-        "draw-x": "draw-x 1.1s cubic-bezier(0.22,1,0.36,1) forwards",
+        "fade-up": "fade-up 1s cubic-bezier(0.16,1,0.3,1) forwards",
+        "fade-in": "fade-in 1s ease forwards",
       },
     },
   },

@@ -1,34 +1,22 @@
-import Logo from "@/components/Logo";
+import Wordmark from "@/components/Wordmark";
 
 export default function NotFound() {
   return (
-    <main className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6">
-      {/* Faint accent glow, matching the hero atmosphere. */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgb(var(--accent) / 0.12), transparent 65%)",
-        }}
-      />
-
-      <div className="relative z-10 flex max-w-md flex-col items-center text-center">
-        <div className="group">
-          <Logo size={48} />
-        </div>
-
-        <p className="mt-8 label text-accent">Error 404</p>
-        <h1 className="mt-4 font-serif text-5xl font-light tracking-tight text-fg sm:text-6xl">
-          Off the map.
-        </h1>
-        <p className="mt-5 leading-relaxed text-muted">
-          This page does not exist — or never did. The opportunity is back home.
-        </p>
-
-        <a href="/" className="btn-primary mt-9">
-          Back to Wayne Capital
-        </a>
-      </div>
+    <main className="flex min-h-[100svh] flex-col items-center justify-center px-6 text-center">
+      <a href="/" aria-label="Wayne Capital home" className="group">
+        <Wordmark />
+      </a>
+      <p className="mt-10 label">Error 404</p>
+      <h1 className="mt-3 max-w-[18ch] text-[clamp(2rem,5vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.02em]">
+        This page doesn&rsquo;t exist.
+      </h1>
+      <p className="mt-4 max-w-[44ch] text-muted">
+        The page you&rsquo;re looking for isn&rsquo;t here. Let&rsquo;s get you
+        back to Main Street.
+      </p>
+      <a href="/" className="btn btn-solid mt-8">
+        Back to Wayne Capital
+      </a>
     </main>
   );
 }

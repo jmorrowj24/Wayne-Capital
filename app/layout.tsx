@@ -1,44 +1,47 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Jost, Schibsted_Grotesk, Newsreader } from "next/font/google";
 import "./globals.css";
 
-// Elegant high-end serif — the "Main Street" / human display voice.
-const serif = Fraunces({
+// Wordmark logo only.
+const jost = Jost({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
-  variable: "--font-serif",
+  variable: "--font-jost",
 });
 
-// Clean neutral body.
-const sans = Hanken_Grotesk({
+// Body / UI.
+const sans = Schibsted_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 });
 
-// Monospace — the cold "Wall Street" / label voice.
-const mono = JetBrains_Mono({
+// Serif accents (italic display).
+const serif = Newsreader({
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["300", "400"],
   display: "swap",
-  variable: "--font-mono",
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://capitalwayne.com"),
-  title: "Wayne Capital — Buy. Build. Own.",
+  title: "Wayne Capital — Where Main Street meets Wall Street",
   description:
-    "Wayne Capital is a private investment company that acquires businesses, invests in real estate, takes positions in public companies, and builds new ventures — and holds them for the long term.",
+    "Wayne Capital is a private investment firm. We bring Wall Street discipline to the established Main Street businesses that power the Midwest.",
   openGraph: {
-    title: "Wayne Capital — Buy. Build. Own.",
+    title: "Wayne Capital — Where Main Street meets Wall Street",
     description:
-      "A private investment company that acquires businesses, invests in real estate, takes positions in public companies, and builds new ventures — and holds them for the long term.",
+      "A private investment firm bringing Wall Street discipline to the established Main Street businesses, real estate, and operators that power the Midwest.",
     type: "website",
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0D",
+  themeColor: "#FFFFFF",
 };
 
 export default function RootLayout({
@@ -49,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+      className={`${jost.variable} ${sans.variable} ${serif.variable}`}
     >
       <body className="font-sans antialiased">{children}</body>
     </html>

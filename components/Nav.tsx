@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Logo from "./Logo";
+import Wordmark from "./Wordmark";
 
 const links = [
-  { label: "Approach", href: "#approach" },
-  { label: "What We Do", href: "#what-we-do" },
-  { label: "Contact", href: "#contact" },
+  { label: "Who We Are", href: "/#who" },
+  { label: "What We Do", href: "/#what" },
 ];
 
 export default function Nav() {
@@ -14,7 +13,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,87 +28,67 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-white/10 bg-base/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 bg-paper/80 backdrop-blur-[14px] transition-[border-color,background] duration-300 ${
+        scrolled ? "border-b border-black/10" : "border-b border-transparent"
       }`}
     >
-      <nav className="wrap flex h-20 items-center justify-between">
-        <a href="#top" className="group flex items-center gap-3" aria-label="Wayne Capital home">
-          <Logo size={38} />
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-fg">
-            Wayne Capital
-          </span>
+      <nav className="wrap flex h-[74px] items-center justify-between">
+        <a href="/#top" className="group" aria-label="Wayne Capital home">
+          <Wordmark />
         </a>
 
-        <div className="hidden items-center gap-10 md:flex">
+        {/* Desktop */}
+        <div className="hidden items-center gap-[34px] md:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm tracking-wide text-muted transition-colors duration-300 hover:text-fg"
+              className="text-sm text-muted transition-colors duration-200 hover:text-ink"
             >
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="btn-primary !px-6 !py-2.5">
-            Submit an Opportunity
+          <a href="/#join" className="btn btn-solid">
+            Join Wayne Capital
           </a>
         </div>
 
+        {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
-          aria-label="Toggle menu"
+          className="relative z-[60] flex w-[30px] flex-col gap-[5px] md:hidden"
+          aria-label="Menu"
           aria-expanded={open}
         >
-          <span
-            className={`h-px w-6 bg-fg transition-all duration-300 ${
-              open ? "translate-y-[6px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`h-px w-6 bg-fg transition-all duration-300 ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`h-px w-6 bg-fg transition-all duration-300 ${
-              open ? "-translate-y-[6px] -rotate-45" : ""
-            }`}
-          />
+          <span className={`h-[1.5px] bg-ink transition-all duration-300 ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
+          <span className={`h-[1.5px] bg-ink transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+          <span className={`h-[1.5px] bg-ink transition-all duration-300 ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
         </button>
       </nav>
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col bg-base/[0.98] backdrop-blur-xl transition-all duration-500 md:hidden ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-2 bg-paper transition-transform duration-[400ms] md:hidden ${
+          open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-1 flex-col justify-center gap-1 px-8">
-          {links.map((l, i) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className={`border-b border-white/10 py-5 font-serif text-4xl tracking-tight text-fg transition-all duration-500 hover:text-accent ${
-                open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-              }`}
-              style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
-            >
-              {l.label}
-            </a>
-          ))}
+        {links.map((l) => (
           <a
-            href="#contact"
+            key={l.href}
+            href={l.href}
             onClick={() => setOpen(false)}
-            className="btn-primary mt-8 w-full"
+            className="p-3.5 text-2xl text-ink"
           >
-            Submit an Opportunity
+            {l.label}
           </a>
-        </div>
+        ))}
+        <a
+          href="/#join"
+          onClick={() => setOpen(false)}
+          className="btn btn-solid mt-4 text-base"
+        >
+          Join Wayne Capital
+        </a>
       </div>
     </header>
   );
