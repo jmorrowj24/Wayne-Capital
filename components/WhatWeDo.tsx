@@ -1,99 +1,54 @@
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
+import SplitSection from "./SplitSection";
 
 const pillars = [
   {
     n: "01",
     title: "Business Acquisitions",
     body: "We acquire and improve durable service businesses with strong fundamentals, recurring demand, and long-term growth potential.",
-    icon: IconBusiness,
   },
   {
     n: "02",
     title: "Real Estate",
     body: "We acquire and operate residential, multifamily, and commercial real estate, focusing on durable cash flow and long-term value in select Midwest markets.",
-    icon: IconRealEstate,
   },
   {
     n: "03",
     title: "Public Markets",
     body: "We build concentrated ownership positions in exceptional public companies with durable competitive advantages.",
-    icon: IconMarkets,
   },
   {
     n: "04",
     title: "New Ventures",
     body: "We build and back operating companies where we see meaningful inefficiency and opportunity.",
-    icon: IconVentures,
   },
 ];
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="border-t border-white/10 py-24 sm:py-32">
-      <div className="wrap">
-        <SectionHeading
-          eyebrow="What We Do"
-          title="Four disciplines. One long-term owner."
-        />
+    <SplitSection id="what-we-do" index="02" label="What We Do" side="right" tone="cold">
+      <Reveal>
+        <h2 className="max-w-2xl font-serif text-[clamp(2.1rem,4.6vw,3.4rem)] font-light leading-[1.08] tracking-[-0.01em] text-fg">
+          Four disciplines. One long-term owner.
+        </h2>
+      </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2">
-          {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 90}>
-              <article className="card group h-full p-8 sm:p-10">
-                <div className="flex items-start justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-accent transition-colors duration-500 group-hover:border-accent/40">
-                    <p.icon />
-                  </span>
-                  <span className="font-serif text-sm text-dim">{p.n}</span>
-                </div>
-                <h3 className="mt-8 font-serif text-2xl font-light text-fg">
+      {/* Cold / structured: a monospace ledger of capabilities. */}
+      <div className="mt-12 border-t border-white/10">
+        {pillars.map((p, i) => (
+          <Reveal key={p.title} delay={i * 80}>
+            <div className="group grid grid-cols-1 gap-3 border-b border-white/10 py-7 transition-colors duration-300 hover:bg-white/[0.02] sm:grid-cols-[auto_1fr] sm:gap-8">
+              <div className="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3">
+                <span className="font-mono text-xs text-accent">{p.n}</span>
+                <h3 className="font-mono text-sm uppercase tracking-[0.18em] text-fg sm:w-44">
                   {p.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-muted">{p.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+              </div>
+              <p className="max-w-2xl leading-relaxed text-muted">{p.body}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-}
-
-const stroke = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.4,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-
-function IconBusiness() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
-      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 11h.01M15 11h.01" />
-    </svg>
-  );
-}
-function IconRealEstate() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
-      <path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5" />
-    </svg>
-  );
-}
-function IconMarkets() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
-      <path d="M4 19h16M5 16l4-5 3 3 6-8" />
-      <path d="M21 5v4h-4" />
-    </svg>
-  );
-}
-function IconVentures() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
-      <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.8.9.8 1.6h5.4c0-.7.3-1.2.8-1.6A6 6 0 0 0 12 3Z" />
-    </svg>
+    </SplitSection>
   );
 }

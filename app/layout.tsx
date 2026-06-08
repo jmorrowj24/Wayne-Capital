@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// Elegant high-end serif — display / headlines.
+// Elegant high-end serif — the "Main Street" / human display voice.
 const serif = Fraunces({
   subsets: ["latin"],
   display: "swap",
@@ -14,6 +14,13 @@ const sans = Hanken_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+});
+
+// Monospace — the cold "Wall Street" / label voice.
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +47,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+    >
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

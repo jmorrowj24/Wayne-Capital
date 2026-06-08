@@ -24,10 +24,12 @@ const config: Config = {
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        // Elegant high-end serif — display / headlines.
+        // Elegant high-end serif — display / headlines (the "Main Street" voice).
         serif: ["var(--font-serif)", "Georgia", "serif"],
         // Clean neutral body.
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        // Monospace — the cold "Wall Street" / label voice.
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       letterSpacing: {
         label: "0.22em",
@@ -44,11 +46,28 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        // Slow cinematic image zoom on the warm side.
+        "zoom-slow": {
+          "0%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1.1)" },
+        },
+        // Hairline divider drawing in from one end.
+        "draw-y": {
+          "0%": { transform: "scaleY(0)" },
+          "100%": { transform: "scaleY(1)" },
+        },
+        "draw-x": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
       },
       animation: {
         // Calm, premium easing — no bounce.
         "fade-up": "fade-up 0.9s cubic-bezier(0.22,1,0.36,1) forwards",
         "fade-in": "fade-in 1.2s ease forwards",
+        "zoom-slow": "zoom-slow 22s ease-out forwards",
+        "draw-y": "draw-y 1.1s cubic-bezier(0.22,1,0.36,1) forwards",
+        "draw-x": "draw-x 1.1s cubic-bezier(0.22,1,0.36,1) forwards",
       },
     },
   },
