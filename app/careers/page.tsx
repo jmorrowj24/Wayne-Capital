@@ -120,7 +120,7 @@ export default function CareersPage() {
               <LeadForm
                 types={hasRoles ? [...roles.map((r) => r.title), "General interest"] : undefined}
                 contextLine={hasRoles ? undefined : "Careers — general interest (no specific role)"}
-                hidden={{ source: "careers" }}
+                hidden={{ source: "Careers" }}
                 submitLabel="Submit application"
                 messagePlaceholder="A short note about you — and a link to your resume or LinkedIn."
                 successTitle="Application received."

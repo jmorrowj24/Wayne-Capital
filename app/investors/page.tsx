@@ -148,6 +148,7 @@ export default function InvestorsPage() {
 
             <Reveal delay={120}>
               <LeadForm
+                hidden={{ source: "Investors" }}
                 types={["Business", "Real estate", "Partnership"]}
                 submitLabel="Send"
                 messagePlaceholder="Tell us about the business, property, or partnership idea."
