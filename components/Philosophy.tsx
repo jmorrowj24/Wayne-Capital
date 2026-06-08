@@ -1,13 +1,18 @@
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
+import MediaSlot from "./MediaSlot";
+import SplitSection from "./SplitSection";
 
 export default function Philosophy() {
   return (
-    <section id="approach" className="border-t border-white/10 py-24 sm:py-32">
-      <div className="wrap">
-        <SectionHeading eyebrow="Who We Are" title="Built for the long term." />
+    <SplitSection id="approach" index="01" label="Who We Are" side="left" tone="warm">
+      <Reveal>
+        <h2 className="max-w-2xl font-serif text-[clamp(2.1rem,4.6vw,3.4rem)] font-light leading-[1.08] tracking-[-0.01em] text-fg">
+          Built for the long term.
+        </h2>
+      </Reveal>
 
-        <div className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-muted">
+      <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
+        <div className="max-w-xl space-y-6 text-lg leading-relaxed text-muted">
           <Reveal>
             <p>
               We acquire established businesses and keep what makes them work — the
@@ -23,16 +28,21 @@ export default function Philosophy() {
               term.
             </p>
           </Reveal>
+          <Reveal delay={160}>
+            <p className="border-t border-white/10 pt-6 text-base text-dim">
+              We&apos;re also building a small number of operating companies of our
+              own.
+            </p>
+          </Reveal>
         </div>
 
-        {/* One subtle line about ventures — not a showcase. */}
-        <Reveal delay={160}>
-          <p className="mt-10 border-t border-white/10 pt-6 text-base text-dim">
-            We&apos;re also building a small number of operating companies of our
-            own.
-          </p>
+        {/* Warm image block — the human side. Swap the photo in MediaSlot. */}
+        <Reveal delay={120}>
+          <div className="relative aspect-[5/4] overflow-hidden rounded-xl border border-white/10">
+            <MediaSlot />
+          </div>
         </Reveal>
       </div>
-    </section>
+    </SplitSection>
   );
 }

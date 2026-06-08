@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Reveal from "./Reveal";
+import SplitSection from "./SplitSection";
 
 const opportunityTypes = [
   "Business Acquisition",
@@ -48,15 +49,11 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="border-t border-white/10 py-24 sm:py-32">
-      <div className="wrap grid gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-5">
+    <SplitSection id="contact" index="04" label="Connect" side="right" tone="warm">
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-14">
+        <div>
           <Reveal>
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-accent" />
-              <span className="label text-accent">Connect</span>
-            </div>
-            <h2 className="mt-6 font-serif text-[clamp(2.1rem,4.6vw,3.4rem)] font-light leading-[1.08] tracking-[-0.01em] text-fg">
+            <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.4rem)] font-light leading-[1.08] tracking-[-0.01em] text-fg">
               Have an opportunity?
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
@@ -81,7 +78,7 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        <div className="lg:col-span-7">
+        <div>
           <Reveal delay={120}>
             <div className="card p-8 sm:p-10">
               {status === "success" ? (
@@ -205,7 +202,7 @@ export default function Contact() {
           background: rgba(255,255,255,0.035);
         }
       `}</style>
-    </section>
+    </SplitSection>
   );
 }
 
